@@ -1,19 +1,19 @@
 <html>
   <head>
     <title>beep</title>
-    <style>
-      body {
-        margin: 0;
-      }
-    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.1.0/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+    <link href="main.css" rel="stylesheet">
   </head>
   <body>
-    <canvas id="canvas" width="1280px" height="720px"></canvas>
-    <script type="text/javascript" src="patterns.js"></script>
+    <script type="text/babel" src="app.jsx"></script>
+    <script type="text/babel" src="pattern-canvas.jsx"></script>
+    <script type="text/babel" src="slider.jsx"></script>
+    <script type="text/babel" src="controls.jsx"></script>
+    <script type="text/babel" src="main.jsx"></script>
+    <div id="content"></div>
   </body>
 </html>
