@@ -14,14 +14,15 @@ window.Slider = React.createClass({
   
   render() {
     return (
-      <label>{this.props.name}
+      <div className='control'>
+        <label>{this.props.name}</label>
         <input type='range'
           min={this.props.min}
           max={this.props.max}
           step={this.props.step}
           value={this.props.value}
           onChange={this.handleInputChange} />
-      </label>
+      </div>
     );
   }
 });

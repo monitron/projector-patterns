@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 canvas {
@@ -16,4 +17,16 @@ canvas {
   background: white;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   z-index: 1;
+}
+
+.control {
+  margin: 5px 0;
+}
+
+.control label {
+  display: block;
+  width: 60px;
+  text-align: right;
+  float: left;
+  padding-right: 10px;
 }
