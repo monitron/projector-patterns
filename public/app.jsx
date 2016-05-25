@@ -12,8 +12,6 @@ window.App = React.createClass({
   },
 
   handleControlsChange(values) {
-    console.log(values);
-    console.log({pattern: Object.assign({}, this.state.pattern, values)});
     this.setState({pattern: Object.assign({}, this.state.pattern, values)});
   },
   

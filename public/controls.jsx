@@ -14,10 +14,18 @@ window.Controls = React.createClass({
   handleColorBChange(value) {
     this.props.onChange({colorB: value});
   },
+
+  handleKindChange(value) {
+    this.props.onChange({kind: value});
+  },
   
   render() {
     return (
       <div id='controls'>
+        <Select name='Style'
+          options={['vertstripe', 'horizstripe']}
+          value={this.props.kind}
+          onChange={this.handleKindChange} />
         <Slider name='Pitch'
           min={5} max={200} value={this.props.pitch}
           onChange={this.handlePitchChange} />
