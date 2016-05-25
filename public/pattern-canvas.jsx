@@ -4,29 +4,42 @@ window.PatternCanvas = React.createClass({
   },
 
   componentDidMount() {
+    this.ccontext = this.refs.canvas.getContext('2d');
+    this.cwidth = 1280;
+    this.cheight = 720;
     this.doDraw();
   },
 
+  drawVerticalStripes() {
+    var { pitch, size, colorA, colorB } = this.props;
+    for(var x = 0; x < this.cwidth; x = x + pitch) {
+      this.ccontext.beginPath();
+      this.ccontext.fillStyle = colorA;
+      this.ccontext.fillRect(x, 0, size * pitch, this.cheight);
+      this.ccontext.fillStyle = colorB;
+      this.ccontext.fillRect(x + (size * pitch), 0,
+        (1 - size) * pitch, this.cheight);
+    }
+  },
+
+  drawHorizontalStripes() {
+    var { pitch, size, colorA, colorB } = this.props;
+    for(var y = 0; y < this.cheight; y = y + pitch) {
+      this.ccontext.beginPath();
+      this.ccontext.fillStyle = colorA;
+      this.ccontext.fillRect(0, y, this.cwidth, size * pitch);
+      this.ccontext.fillStyle = colorB;
+      this.ccontext.fillRect(0, y + (size * pitch),
+        this.cwidth, (1 - size) * pitch);
+    }
+  },
+  
   doDraw() {
     console.log("drawing");
-    var canvas = this.refs.canvas;
-    var context = canvas.getContext('2d');
-    var cwidth = 1280;
-    var cheight = 720;
-
-    var drawStripes = function(stripeWidth, thickness, colorA, colorB) {
-      for(var x = 0; x < cwidth; x = x + stripeWidth) {
-        context.beginPath();
-        context.fillStyle = colorA;
-        context.fillRect(x, 0, thickness * stripeWidth, cheight);
-        context.fillStyle = colorB;
-        context.fillRect(x + (thickness * stripeWidth), 0,
-          (1 - thickness) * stripeWidth, cheight);
-      }
-    };
-
-    drawStripes(this.props.pitch, this.props.size,
-      this.props.colorA, this.props.colorB);
+    switch(this.props.kind) {
+      case 'vertstripe' : this.drawVerticalStripes(); break;
+      case 'horizstripe': this.drawHorizontalStripes(); break;
+    }
   },
   
   render() {

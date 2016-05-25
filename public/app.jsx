@@ -2,7 +2,7 @@ window.App = React.createClass({
   getInitialState() {
     return {
       pattern: {
-        kind: 'stripes',
+        kind: 'vertstripe',
         pitch: 100,
         size: 0.6,
         colorA: '#dddddd',
