@@ -6,6 +6,14 @@ window.Controls = React.createClass({
   handleSizeChange(value) {
     this.props.onChange({size: value});
   },
+
+  handleColorAChange(value) {
+    this.props.onChange({colorA: value});
+  },
+
+  handleColorBChange(value) {
+    this.props.onChange({colorB: value});
+  },
   
   render() {
     return (
@@ -16,6 +24,12 @@ window.Controls = React.createClass({
         <Slider name='Size'
           min={0} max={1} step={0.01} value={this.props.size}
           onChange={this.handleSizeChange} />
+        <Color name='Color A'
+          value={this.props.colorA}
+          onChange={this.handleColorAChange} />
+        <Color name='Color B'
+          value={this.props.colorB}
+          onChange={this.handleColorBChange} />
       </div>
     );
   }
