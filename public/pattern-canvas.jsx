@@ -22,16 +22,23 @@ window.PatternCanvas = React.createClass({
     }
   },
 
-  drawHorizontalStripes() {
+  drawHorizontalStripes(skipB) {
     var { pitch, size, colorA, colorB } = this.props;
     for(var y = 0; y < this.cheight; y = y + pitch) {
       this.ccontext.beginPath();
       this.ccontext.fillStyle = colorA;
       this.ccontext.fillRect(0, y, this.cwidth, size * pitch);
-      this.ccontext.fillStyle = colorB;
-      this.ccontext.fillRect(0, y + (size * pitch),
+      if(!skipB) {
+        this.ccontext.fillStyle = colorB;
+        this.ccontext.fillRect(0, y + (size * pitch),
         this.cwidth, (1 - size) * pitch);
+      }
     }
+  },
+
+  drawGrid() {
+    this.drawVerticalStripes();
+    this.drawHorizontalStripes(true);
   },
   
   doDraw() {
@@ -39,6 +46,7 @@ window.PatternCanvas = React.createClass({
     switch(this.props.kind) {
       case 'vertstripe' : this.drawVerticalStripes(); break;
       case 'horizstripe': this.drawHorizontalStripes(); break;
+      case 'grid'       : this.drawGrid(); break;
     }
   },
   
