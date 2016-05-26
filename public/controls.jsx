@@ -1,4 +1,16 @@
 window.Controls = React.createClass({
+  getInitialState() {
+    return {hidden: false};
+  },
+  
+  componentWillMount() {
+    $(document).on('keydown', function(e) {
+      if(e.which == 27) // esc
+        this.setState({hidden: !this.state.hidden});
+    }.bind(this));
+    // Ideally we should remove this later, but this component never dies
+  },
+  
   handlePitchChange(value) {
     this.props.onChange({pitch: value});
   },
@@ -20,8 +32,9 @@ window.Controls = React.createClass({
   },
   
   render() {
+    var classes = this.state.hidden ? 'hidden' : '';
     return (
-      <div id='controls'>
+      <div id='controls' className={classes}>
         <Select name='Style'
           options={['vertstripe', 'horizstripe', 'grid', 'dots']}
           value={this.props.kind}

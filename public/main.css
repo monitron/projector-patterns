@@ -20,6 +20,10 @@ canvas {
   z-index: 1;
 }
 
+#controls.hidden {
+  display: none;
+}
+
 .control {
   margin: 5px 0;
 }

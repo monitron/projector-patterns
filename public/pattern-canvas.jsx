@@ -1,4 +1,8 @@
 window.PatternCanvas = React.createClass({
+  getInitialState() {
+    return {shown: true};
+  },
+  
   componentDidUpdate() {
     this.doDraw();
   },
