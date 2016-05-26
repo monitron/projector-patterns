@@ -23,7 +23,7 @@ window.Controls = React.createClass({
     return (
       <div id='controls'>
         <Select name='Style'
-          options={['vertstripe', 'horizstripe', 'grid']}
+          options={['vertstripe', 'horizstripe', 'grid', 'dots']}
           value={this.props.kind}
           onChange={this.handleKindChange} />
         <Slider name='Pitch'

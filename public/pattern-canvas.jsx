@@ -13,7 +13,6 @@ window.PatternCanvas = React.createClass({
   drawVerticalStripes() {
     var { pitch, size, colorA, colorB } = this.props;
     for(var x = 0; x < this.cwidth; x = x + pitch) {
-      this.ccontext.beginPath();
       this.ccontext.fillStyle = colorA;
       this.ccontext.fillRect(x, 0, size * pitch, this.cheight);
       this.ccontext.fillStyle = colorB;
@@ -25,7 +24,6 @@ window.PatternCanvas = React.createClass({
   drawHorizontalStripes(skipB) {
     var { pitch, size, colorA, colorB } = this.props;
     for(var y = 0; y < this.cheight; y = y + pitch) {
-      this.ccontext.beginPath();
       this.ccontext.fillStyle = colorA;
       this.ccontext.fillRect(0, y, this.cwidth, size * pitch);
       if(!skipB) {
@@ -40,6 +38,26 @@ window.PatternCanvas = React.createClass({
     this.drawVerticalStripes();
     this.drawHorizontalStripes(true);
   },
+
+  drawDots() {
+    var { pitch, size, colorA, colorB } = this.props;
+    var xoffset = 0;
+    this.ccontext.fillStyle = colorA;
+    this.ccontext.fillRect(0, 0, this.cwidth, this.cheight);
+    this.ccontext.fillStyle = colorB;
+    for(var y = 0; y < this.cheight; y = y + (pitch * .862)) {
+      if(xoffset == 0)
+        xoffset = pitch / 2;
+      else
+        xoffset = 0;
+      for(var x = 0; x < this.cwidth; x = x + pitch) {
+        this.ccontext.beginPath();
+        this.ccontext.arc(x + xoffset, y, size * pitch / 2, 0, Math.PI * 2);
+        this.ccontext.closePath();
+        this.ccontext.fill();
+      }
+    }
+  },
   
   doDraw() {
     console.log("drawing");
@@ -47,6 +65,7 @@ window.PatternCanvas = React.createClass({
       case 'vertstripe' : this.drawVerticalStripes(); break;
       case 'horizstripe': this.drawHorizontalStripes(); break;
       case 'grid'       : this.drawGrid(); break;
+      case 'dots'       : this.drawDots(); break;
     }
   },
   
